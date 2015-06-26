@@ -1,0 +1,41 @@
+<head>
+  <title>Nunki Widget</title>
+  <link rel="stylesheet" type="text/css" href="css/nunki-components.css" />
+</head>
+<body ng-app ="nunki" ng-controller="instaEmbedCtrl">
+  <md-grid-list md-cols-sm="1"
+                md-cols-md="2"
+                md-cols-gt-md="6"
+                md-row-height-gt-md="1:1"
+                md-row-height="4:3"
+                md-gutter="8px"
+                md-gutter-gt-sm="4px"
+                >
+
+      <md-grid-tile ng-repeat="result in results"
+                    ng-class="red">
+                    <img src="{{result.thumbImageLink}}" ng-click="embedOpen(result.platformMediaLink)">
+      <md-grid-tile-footer><h3>{{result.author}}</h3></md-grid-title-footer>
+      </md-grid-tile>
+  </md-grid-list>
+
+  <!--<ul>
+    <li ng-repeat="result in results">
+      {{result.author}}<br/>
+      <img src="{{result.thumbImageLink}}"><br/>
+      <md-button class="md-raised md-primary" ng-click="embedOpen(result.platformMediaLink)">Open Check</md-button>
+    </li>
+  <ul>-->
+</body>
+
+<script type="text/ng-template" id="testTemplate">
+    <body ng-controller="instagramCtrl" class="ng-scope">
+      <div ng-bind-html="html"></div>
+    </body>
+</script>
+
+<footer>
+  <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
+  <script src="js/nunki-components.js"></script>
+  <script src="js/nunki.js"></script>
+</footer>
