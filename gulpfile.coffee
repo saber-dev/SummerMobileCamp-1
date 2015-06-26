@@ -82,7 +82,7 @@ gulp.task 'copy_json', ->
 
 gulp.task 'shell_copy', ['common'], ->
   gulp.src "public"
-    .pipe shell 'sh copy_shell.sh'
+    .pipe shell 'echo "hello"'
 
 
 gulp.task 'prod',    ['js_compress']

@@ -10,5 +10,6 @@ nunki.controller "instagramCtrl", ($scope, $http, $sce, $timeout) ->
       #$scope.mahefa = $scope.$parent.pseudo
       $scope.html   = $sce.trustAsHtml(data.html)
       #$scope.test   = $sce.trustAsHtml('<h1>hello</h1>')
+
     .error (error) ->
       console.log "cannot fetch data"
