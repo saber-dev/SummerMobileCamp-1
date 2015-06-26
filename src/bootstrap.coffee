@@ -10,10 +10,12 @@ nunki = angular.module 'nunki', [
 
 
 # les routes pour le site internet, a modifier si besoin
-nunki.config ($routeProvider, $httpProvider) ->
+nunki.config ($routeProvider, $httpProvider, $mdIconProvider) ->
   $routeProvider
     .when '/',
       templateUrl: 'index.html'
+  $mdIconProvider.iconSet 'avatar', 'icons/avatar-icons.svg', 128
+
 
   #$httpProvider.defaults.useXDomain = true;
   #$httpProvider.defaults.withCredentials = true;
