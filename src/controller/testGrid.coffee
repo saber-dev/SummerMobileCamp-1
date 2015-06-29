@@ -1,6 +1,15 @@
-nunki.controller 'gridListDemoCtrl', ($scope) ->
+nunki.controller 'gridListDemoCtrl', ($scope, $http, ngDialog) ->
+    image = []
+    embedLink = []
 
-    buildGridModel = (tileTmpl) ->
+    $scope.embedOpen = (author) ->
+      $scope.pseudo = author
+      ngDialog.open
+          template:   'templates/instaEmbed.html'
+          controller: 'instagramCtrl'
+          scope:       $scope
+
+    buildGridModel = (tileTmpl, image, EmbedLink) ->
       it = null
       results = []
       j = 0
@@ -8,13 +17,16 @@ nunki.controller 'gridListDemoCtrl', ($scope) ->
         it = angular.extend({}, tileTmpl)
         it.icon = it.icon + (j + 1)
         it.title = it.title + (j + 1)
+        it.image = image[j]
+        it.Link = EmbedLink[j]
+        #it.background = it.background + (image[j])
 
         it.span =
           row: 1
           col: 1
         switch j + 1
           when 1
-            it.background = "yellow"
+            it.background = 'nigga'
             it.span.row = it.span.col = 2
           when 2
             it.background = 'gray'
@@ -42,8 +54,17 @@ nunki.controller 'gridListDemoCtrl', ($scope) ->
         j++
       results
 
-    @tiles = buildGridModel(
-      icon: 'avatar:svg-'
-      title: 'svg-'
-      background: "")
-    return
+    $http.get('Json/data_formatted.json')
+    .success (data) ->
+      #$scope.results = data.results.thumbImageLink
+        angular.forEach data.results, (result, key) ->
+          image.push (result.thumbImageLink)
+          embedLink.push (result.platformMediaLink)
+          #console.log image
+          $scope.tiles = buildGridModel(
+            icon: 'avatar:svg-'
+            title: 'svg-'
+            background: ''
+            image: ''
+            Link: '' , image, embedLink)
+          return

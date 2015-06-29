@@ -22,7 +22,7 @@ nunki.controller "instaEmbedCtrl", ($scope, $http, ngDialog) ->
           col: 1
         switch j + 1
           when 1
-            it.background = 'red'
+            it.background = 'nigga'
             it.span.row = it.span.col = 2
           when 2
             it.background = 'green'
