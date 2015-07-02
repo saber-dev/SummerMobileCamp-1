@@ -1,0 +1,73 @@
+<form ng-controller="sexyWidgetCtrl">
+
+<!--<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h1>LAst Events</h1>
+    <span flex></span>
+    <md-button class="md-icon-button" ng-click="answer('quit the widget')">
+      <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+    </md-button>
+  </div>
+</md-toolbar>-->
+
+  <md-dialog-content ng-repeat="result in results" ng-if="$index < 3">
+       <div class="tabsdemoDynamicHeight">
+        <md-content class="md-padding">
+          <md-tabs md-dynamic-height="" md-border-bottom="">
+            <md-tab label="Description">
+              <md-content class="md-padding">
+                Event : Roland Garros / Event Id : {{result.eventId}}
+                Date  : {{result.date}}
+              </md-content>
+      </md-tab>
+      <md-tab label="Content">
+        <md-content class="md-padding">
+            <img ng-src="{{result.thumbImageLink}}" ng-click="embedOpen(result.platformMediaLink)" style="width: 100%; height: 100%">
+          </md-content>
+        </md-tab>
+    </md-whiteframe>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-content>
+  </div>
+  <div class="md-actions" layout="row">
+      <span flex></span>
+      <md-button ng-click="answer('saved the event')" class="md-primary">
+        Save
+      </md-button>
+    </div>
+  </md-dialog-content>
+
+
+<!--<md-dialog-content>
+     <div class="tabsdemoDynamicHeight" ng-app="MyApp">
+<md-content class="md-padding">
+  <md-tabs md-dynamic-height="" md-border-bottom="">
+    <md-tab label="Description">
+      <md-content class="md-padding">
+        <p>Description non exhaustive de l'evenement.</p>
+      </md-content>
+    </md-tab>
+    <md-tab label="Instagram">
+      <md-content class="md-padding">
+         <md-whiteframe class="md-whiteframe-z2" layout="" layout-align="center center">
+  <span>.md-whiteframe-z2</span>
+
+</md-whiteframe>
+      </md-content>
+    </md-tab>
+</md-whiteframe>
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</md-content>
+</div>
+<div class="md-actions" layout="row">
+  <span flex></span>
+  <md-button ng-click="answer('saved the event')" class="md-primary">
+    Save
+  </md-button>
+</div>
+</md-dialog-content>-->
+</form>

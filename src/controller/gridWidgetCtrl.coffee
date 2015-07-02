@@ -1,11 +1,14 @@
-nunki.controller 'gridWidgetCtrl', ($scope, $http, ngDialog) ->
+nunki.controller 'gridWidgetCtrl', ($scope, $http, ngDialog, $mdDialog) ->
     image = []
     embedLink = []
     authorLink = []
+    $scope.alert = ''
+    $scope.results = null
 
     $http.get('Json/data_formatted.json')
     .success (data) ->
-      #$scope.results = data.results.thumbImageLink
+        $scope.results = data.results
+
         angular.forEach data.results, (result, key) ->
           image     .push (result.thumbImageLink)
           embedLink .push (result.platformMediaLink)
@@ -22,6 +25,12 @@ nunki.controller 'gridWidgetCtrl', ($scope, $http, ngDialog) ->
           template:   'templates/instaEmbed.html'
           controller: 'instagramCtrl'
           scope:       $scope
+
+    $scope.widgetVtwoOpen = ->
+      ngDialog.open
+          template:   'templates/widgetVtwo.html'
+          controller: 'sexyWidgetCtrl'
+          scope:      $scope
 
     buildGridModel = (tileTmpl, image, EmbedLink, AuthorLink) ->
       it = null
@@ -46,3 +55,37 @@ nunki.controller 'gridWidgetCtrl', ($scope, $http, ngDialog) ->
         results.push it
         j++
       results
+
+    DialogController = ($scope, $mdDialog) ->
+
+      #$scope.results = gridWidgetCtrl.$scope.result
+      $scope.results = $scope.$parent.toto
+      console.log $scope.$parent.toto
+      $scope.hide = ->
+        $mdDialog.hide()
+        return
+
+      $scope.cancel = ->
+        $mdDialog.cancel()
+        return
+
+      $scope.answer = (answer) ->
+        $mdDialog.hide answer
+        return
+      return
+
+    $scope.showAdvanced = (ev) ->
+      $mdDialog.show(
+        scope: $scope
+        controller: DialogController
+        templateUrl: 'dialog1.tmpl.html'
+        parent: angular.element(document.body)
+        targetEvent: ev).then ((answer) ->
+        $scope.alert = 'You ' + answer + '.'
+        return
+      ), ->
+        $scope.alert = 'You cancelled the dialog.'
+        return
+      return
+
+    return

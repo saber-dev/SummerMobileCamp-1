@@ -9,7 +9,7 @@
 <body>
 
 <div flex layout="collum" style="z-index:1">
-  <div ng-controller="gridWidgetCtlr" flex>
+  <div ng-controller="gridWidgetCtrl" flex>
     <md-grid-list
             md-cols-sm="1"
             md-cols-md="2"
@@ -30,6 +30,31 @@
     </md-grid-list>
   </div>
 </div>
+
+<div ng-controller="gridWidgetCtrl" class="md-padding dialogdemoBasicUsage">
+  <div class="dialog-demo-content" layout="row" layout-wrap="">
+    <md-button class="md-primary md-raised" ng-click="widgetVtwoOpen()" flex="" flex-md="100">
+      Widget v2
+    </md-button>
+  </div>
+  <div ng-if="alert">
+    <br>
+    <b layout="row" layout-align="center center" class="md-padding">
+      {{results.author}}
+    </b>
+  </div>
+<!--<script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="">-->
+</script>
+</div>
+
+
+<!--  <div ng-repeat="result in results">
+  <md-whiteframe class="md-whiteframe-z3 demo-swipe" layout="" layout-align="center center" md-swipe-left="embedOpen(result.platformMediaLink)">
+      <img src="{{result.thumbImageLink}}">
+      <span class="no-select">{{result.author}}</span>
+  </md-whiteframe>
+
+</div>-->
 
 <footer>
     <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>

@@ -1,8 +1,8 @@
 nunki.controller "instagramCtrl", ($scope, $http, $sce, $timeout) ->
-  test = 'http://api.instagram.com/publicapi/oembed/?url=' + $scope.$parent.pseudo + '&omitscript=true'
+  test = 'http://api.instagram.com/publicapi/oembed/?url=' + $scope.$parent.pseudo + '&omitscript=true&callback=JSON_CALLBACK'
   backup = 'http://api.instagram.com/publicapi/oembed/?url=http://instagr.am/p/fA9uwTtkSN/'
   console.log test
-  $http.get(test)
+  $http.jsonp(test)
     .success (data) ->
       $timeout ->
         window.instgrm.Embeds.process()
